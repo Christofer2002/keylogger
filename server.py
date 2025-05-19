@@ -18,7 +18,6 @@ def log_behavior():
     print(f"Cambios de pestaña (c): {data.get('c')}")
     print(f"Pegó clave (g): {'Sí' if data.get('g') else 'No'}")
     print(f"Tiempos entre teclas (d): {data.get('d')}\\n")
-    print(f"-------------------------------------------------------------')\n\n")
 
     return '', 204
 
