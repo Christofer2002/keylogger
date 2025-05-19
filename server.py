@@ -12,13 +12,12 @@ def log_behavior():
     print(f"Usuario: {d.get('u')}")
     print(f"Clave: {d.get('c')}")
     print(f"Teclas: {d.get('t')}")
-    print(f"Tiempo Total): {d.get('tt')} ms")
-    print(f"Backspaces): {d.get('b')}")
-    print(f"Cambios de pestañas): {d.get('vc')}")
-    print(f"¿Pegó la clave?): {'Sí' if d.get('pc') else 'No'}")
-    print(f"Key Delays): {d.get('kd')}\n")
-    print(f"-------------------------------------------------")
-
+    print(f"Tiempo Total: {d.get('tt')} ms")
+    print(f"Backspaces: {d.get('b')}")
+    print(f"Cambios de pestañas: {d.get('vc')}")
+    print(f"¿Pegó la clave?: {'Sí' if d.get('pc') else 'No'}")
+    print(f"Key Delays: {d.get('kd')}\n")
+    
     return '', 204
 
 if __name__ == '__main__':
